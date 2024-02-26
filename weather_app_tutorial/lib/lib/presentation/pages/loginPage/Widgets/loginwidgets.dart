@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:weather_app_tutorial/lib/presentation/pages/Home_page.dart';
+import 'package:weather_app_tutorial/lib/presentation/pages/loginPage/signup.dart';
 
 class LoginWidget extends StatelessWidget {
   const LoginWidget({
@@ -46,11 +47,38 @@ class LoginWidget extends StatelessWidget {
           ),
           ElevatedButton(
             onPressed: () async {
+              if(_pass.text.isEmpty || _email.text.isEmpty){
+                showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text('Login Failed'),
+            content: Text('Invalid email or password. Please try again.'),
+            actions: [
+              TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                child: Text('OK'),
+              ),
+            ],
+          );});
+              }
               await loginFirebaseLogic(context);
             },
             child: Text("Login"),
           ),
+
+          ElevatedButton(
+            onPressed: () async {
+              Navigator.of(context).push(MaterialPageRoute(builder: (context) => Signup(),));
+             
+            },
+            child: Text("Signup"),
+          ),
         ],
+
+        
       ),
     );
   }
@@ -69,11 +97,11 @@ class LoginWidget extends StatelessWidget {
             'uid': userData.user!.uid,
           });
 
-          // Navigate after both operations are complete
+         
           Navigator.of(ctx).pushReplacement(MaterialPageRoute(builder: (context) => HomePage()));
         }
       } catch (e) {
-        // Handle login errors (e.g., invalid credentials)
+       
         print('Login failed: $e');
       }
     }

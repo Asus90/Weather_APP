@@ -9,6 +9,7 @@ import 'package:weather_app_tutorial/lib/Application/bloc/homebloc_bloc.dart';
 import 'package:weather_app_tutorial/lib/core/const.dart';
 import 'package:weather_app_tutorial/lib/presentation/pages/Home_page.dart';
 import 'package:weather_app_tutorial/lib/presentation/pages/Widgets/SearchSection.dart';
+import 'package:weather_app_tutorial/lib/presentation/pages/loginPage/loginpage.dart';
 import 'package:weather_app_tutorial/lib/presentation/pages/splashScreen.dart';
 import 'package:firebase_core/firebase_core.dart';
 
@@ -48,7 +49,7 @@ class _MyAppState extends State<MyApp> {
       ],
       child: MaterialApp(
         navigatorKey: navigatorKey,
-        routes: {'Search': (context) => SearchSection()},
+        routes: {'Search': (context) => SearchSection(),'LoginPage': (context) => LoginPage(),},
         title: 'Flutter Demo',
         theme: ThemeData(
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),

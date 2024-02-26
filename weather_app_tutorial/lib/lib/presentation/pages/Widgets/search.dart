@@ -1,9 +1,11 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:weather_app_tutorial/lib/Application/Current_Location/bloc/current_loccation_bloc.dart';
 import 'package:weather_app_tutorial/lib/Application/bloc/homebloc_bloc.dart';
 import 'package:weather_app_tutorial/lib/core/const.dart';
 import 'package:weather_app_tutorial/lib/presentation/pages/Widgets/homeScreenPad.dart';
+import 'package:weather_app_tutorial/lib/presentation/pages/loginPage/loginpage.dart';
 
 class HomeSection extends StatelessWidget {
   const HomeSection({
@@ -19,6 +21,7 @@ class HomeSection extends StatelessWidget {
       height: MediaQuery.of(context).size.height,
       width: MediaQuery.of(context).size.width,
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
           BlocBuilder<HomeblocBloc, HomeblocState>(
             builder: (context, state1) {
@@ -34,7 +37,9 @@ class HomeSection extends StatelessWidget {
                     builder: (context, state) {
                       print("CurrentLoccationBloc State: $state");
                       return Text.rich(
-                        TextSpan(text: '${state1.name ?? state.area ?? "City Not Found"}'),
+                        TextSpan(
+                            text:
+                                '${state1.name ?? state.area ?? "City Not Found"}'),
                         style: TextStyle(
                           fontFamily: AutofillHints.addressCity,
                           fontSize: 22,
@@ -62,6 +67,17 @@ class HomeSection extends StatelessWidget {
                 ],
               );
             },
+          ),
+          ElevatedButton(
+            onPressed: () async {
+  await FirebaseAuth.instance.signOut();
+  Navigator.of(context).pushAndRemoveUntil(
+    MaterialPageRoute(builder: (context) => LoginPage()),
+    (Route<dynamic> route) => false,
+  );
+},
+
+            child: Text("Logout"),
           )
         ],
       ),
