@@ -15,7 +15,14 @@ import 'package:firebase_core/firebase_core.dart';
 
 Future<void>  main()async {
   WidgetsFlutterBinding.ensureInitialized();
-  Firebase.initializeApp();
+  Firebase.initializeApp(
+    options: FirebaseOptions(
+      apiKey: "AIzaSyDVJ90dDTA2WXePp1hd8pssqhghzSqvyIE",
+      appId: "1:360338590406:android:f0ebd70b864acc30df25c7",
+      messagingSenderId: "360338590406",
+      projectId: "weatherapp123-99af7",
+    ),
+  );
   
   runApp(const MyApp());
 }

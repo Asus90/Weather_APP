@@ -13,9 +13,9 @@ class HomeScreenWetherPad extends StatelessWidget {
     return BlocBuilder<CurrentLoccationBloc, CurrentLoccationState>(
       builder: (context, state) {
         if (state.isLoading == true) {
-          return Text("Loading..");
-        }
-        return Container(
+          return Text("Loading..\n  Getting Your Current Location");
+        }else{
+           return Container(
           height: 100,
           width: 350,
           decoration: BoxDecoration(
@@ -68,6 +68,8 @@ class HomeScreenWetherPad extends StatelessWidget {
             },
           ),
         );
+        }
+       
       },
     );
   }

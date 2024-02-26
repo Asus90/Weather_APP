@@ -1,5 +1,7 @@
 import 'dart:async';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:location/location.dart';
 import 'package:weather_app_tutorial/lib/core/const.dart';
@@ -30,10 +32,24 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   splashScreen() async {
+    final bool userExists = await CheckUser();
     await Future.delayed(Duration(seconds: 3), () {
       Navigator.of(context).pushReplacement(MaterialPageRoute(
-        builder: (context) => LoginPage(),
+        builder: (context) => userExists ? HomePage() : LoginPage(),
       ));
     });
+  }
+}
+
+Future<bool> CheckUser() async {
+  final uid = FirebaseAuth.instance.currentUser?.uid;
+
+  final result = await FirebaseFirestore.instance.collection('user').doc(uid).get();
+  print(result.id==uid);
+  if(result.id==uid){
+
+  return true;
+  }else{
+    return false;
   }
 }

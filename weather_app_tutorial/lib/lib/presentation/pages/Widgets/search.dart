@@ -25,7 +25,7 @@ class HomeSection extends StatelessWidget {
         children: [
           BlocBuilder<HomeblocBloc, HomeblocState>(
             builder: (context, state1) {
-              print("HomeblocBloc State: $state1");
+             
               if (state1.Islooding) {
                 return CircularProgressIndicator(
                   strokeWidth: 2,
