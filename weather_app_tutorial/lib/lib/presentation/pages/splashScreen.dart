@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:location/location.dart';
 import 'package:weather_app_tutorial/lib/core/const.dart';
 import 'package:weather_app_tutorial/lib/presentation/pages/Home_page.dart';
+import 'package:weather_app_tutorial/lib/presentation/pages/loginPage/loginpage.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
@@ -31,7 +32,7 @@ class _SplashScreenState extends State<SplashScreen> {
   splashScreen() async {
     await Future.delayed(Duration(seconds: 3), () {
       Navigator.of(context).pushReplacement(MaterialPageRoute(
-        builder: (context) => HomePage(),
+        builder: (context) => LoginPage(),
       ));
     });
   }

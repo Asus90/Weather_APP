@@ -30,7 +30,7 @@ class _MyAppState extends State<MyApp> {
   @override
   void initState() {
     super.initState();
-    add();
+ 
     
   }
 
@@ -61,8 +61,3 @@ class _MyAppState extends State<MyApp> {
 }
 
 
-add()async{
- await FirebaseFirestore.instance.collection('user').add({
-      'name':'hasanmk'
-    });
-}
